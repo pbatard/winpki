@@ -19,7 +19,7 @@
  */
 
 // Undefine the following to run the program as standalone
-//#define CATSIGN_STANDALONE
+#define CATSIGN_STANDALONE
 
 #include <windows.h>
 #include <setupapi.h>
@@ -28,6 +28,7 @@
 #include <conio.h>
 #include <stdint.h>
 #include <string.h>
+#include <ctype.h>
 #include "mssign32.h"
 
 #ifndef CATSIGN_STANDALONE
@@ -48,6 +49,9 @@ static char err_string[20];
 	_snprintf(err_string, MAX_PATH, "errcode #%X", error_code);
 	return err_string;
 }
+#ifndef ARRAYSIZE
+#define ARRAYSIZE(A) (sizeof(A)/sizeof((A)[0]))
+#endif
 #endif
 
 #define PF_INIT_OR_OUT(proc, dllname) \
